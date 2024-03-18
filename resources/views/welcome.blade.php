@@ -7,11 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Bienvenido</h1>
-
-    <a href="/contacto">Contacto</a>
-    <br>
-    <a href="{{route('contacto')}}">Contacto (Ruta con Nombre)</a>
-
+    {{ $user->name}}
 </body>
 </html>
