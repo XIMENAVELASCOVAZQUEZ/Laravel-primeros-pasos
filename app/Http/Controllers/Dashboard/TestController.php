@@ -14,7 +14,13 @@ class TestController extends Controller
      */
     public function index()
     {
-        return view("dashboard.test.index", ['posts' => [1,2,3,4,'Andres']]);
+        $posts = [1,2,3,4,'Andres'];
+        $name = "Andres";
+
+        /**
+         * ['posts' => $posts] === compact('posts)
+         */
+        return view("dashboard.test.index", compact('posts', 'name'));
     }
 
     /**
