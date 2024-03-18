@@ -14,7 +14,7 @@ class TestController extends Controller
      */
     public function index()
     {
-        return view("dashboard.test.index", ['name' => 'Andres Cruz', 'age' =>31, 'html' => '<h1>Titulo</h1>', 'array' => [1,2,3,4,'Andres']]);
+        return view("dashboard.test.index", ['posts' => [1,2,3,4,'Andres']]);
     }
 
     /**
