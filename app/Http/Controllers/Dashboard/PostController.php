@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
@@ -21,7 +22,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        echo view('dashboard.post.create');
+       $categories = Category::get();
+
+       //dd($categories[0]->title);
+       echo view('dashboard.post.create',compact('categories'));
     }
 
     /**
@@ -29,8 +33,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-       echo "Prueba";
-        dd($request);
+        //echo request("title");
+        //echo $request->input('slug');
+        dd($request->all());
+
+        //dd(request("title"));
+        //dd($request);
     }
 
     /**
