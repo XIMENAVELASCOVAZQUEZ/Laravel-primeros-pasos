@@ -8,6 +8,9 @@
 </head>
 <body>
     <h1>Crear Post</h1>
+
+    @include('dashboard\post.fragment._errors-form')
+
     <form action="{{ route('post.store') }}" method="post">
         @csrf
 
@@ -20,8 +23,8 @@
         <label for="">Categoria</label>
         <select name="category_id">
             <option value=""></option>
-            @foreach ($categories as $c)
-                <option value="{{ $c->id }}">{{ $c->title }}</option>
+            @foreach ($categories as $title => $id)
+                <option value="{{ $id }}">{{ $title }}</option>
             @endforeach
         </select>
 

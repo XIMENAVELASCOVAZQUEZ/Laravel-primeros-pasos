@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Http\Requests\Post\StoreRequest;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -22,7 +25,9 @@ class PostController extends Controller
      */
     public function create()
     {
-       $categories = Category::get();
+       $categories = Category::pluck('id', 'title');
+
+       //dd($categories);
 
        //dd($categories[0]->title);
        echo view('dashboard.post.create',compact('categories'));
@@ -30,19 +35,39 @@ class PostController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     * 
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         //echo request("title");
         //echo $request->input('slug');
-        dd($request->all());
+        //dd($request->all());
+        
+        $validated = Validator::make($request->all(),StoreRequest::myRules());
+        //dd($validated->fails());
+        //dd($validated->fails());
 
         //dd(request("title"));
         //dd($request);
+
+        //$validated = $request->validate(StoreRequest::myRules());
+        //$request->validate(StoreRequest::myRules());
+
+        $data = array_merge($request->all(),['image' => '']);
+
+        dd($data);
+
+        Post::create($data);
     }
 
     /**
      * Display the specified resource.
+     * 
+     * @param \App\Models\Post $post
+     * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
     {
