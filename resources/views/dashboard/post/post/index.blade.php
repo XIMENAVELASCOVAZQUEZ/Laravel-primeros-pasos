@@ -1,6 +1,7 @@
 @extends('dashboard\post.layout')
 
 @section('content')
+    
     <table>
         <thead>
             <tr>
@@ -37,4 +38,5 @@
                 @endforeach
             </tbody>
     </table>
+    {{ $posts->links() }}
 @endsection
