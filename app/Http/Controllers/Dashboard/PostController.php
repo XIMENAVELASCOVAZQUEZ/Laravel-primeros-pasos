@@ -18,7 +18,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        echo "Index";
+        $posts = Post::get();
+        return view('dashboard\post.post.index',compact('posts'));
     }
 
     /**
@@ -31,7 +32,7 @@ class PostController extends Controller
        //dd($categories);
 
        //dd($categories[0]->title);
-       echo view('dashboard.post.create',compact('categories'));
+       echo view('dashboard\post.post.create',compact('categories'));
     }
 
     /**
@@ -61,13 +62,13 @@ class PostController extends Controller
 
         //dd($data);
 
-        $data = $request->validated();
+        //$data = $request->validated();
 
-        $data['slug'] = Str::slug($data['title']);
+        //$data['slug'] = Str::slug($data['title']);
         
-        dd($data);
+        //dd($data);
 
-        Post::create($data);
+        Post::create($request->validated());
     }
 
     /**

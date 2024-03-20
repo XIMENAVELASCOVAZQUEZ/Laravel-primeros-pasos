@@ -10,14 +10,16 @@ class StoreRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'slug' => Str::slug($this->title)
+            //'slug' => Str::slug($this->title),
+            //'slug' => Str::of($this->title)->slug()->append("-adicional"),
+            'slug' => str($this->title)->slug()
         ]);
     }
 
    static public function myRules() {
     return [
             "title" => "required|min:5|max:500",
-            "slug" => "required|min:5|max:500",
+            "slug" => "required|min:5|max:500|unique:posts",
             "content" => "required|min:7",
             "category_id" => "required|integer",
             "description" => "required|min:7",
