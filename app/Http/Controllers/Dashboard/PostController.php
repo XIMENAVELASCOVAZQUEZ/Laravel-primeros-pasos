@@ -9,6 +9,7 @@ use App\Http\Requests\Post\StoreRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -56,8 +57,14 @@ class PostController extends Controller
         //$validated = $request->validate(StoreRequest::myRules());
         //$request->validate(StoreRequest::myRules());
 
-        $data = array_merge($request->all(),['image' => '']);
+        //$data = array_merge($request->all(),['image' => '']);
 
+        //dd($data);
+
+        $data = $request->validated();
+
+        $data['slug'] = Str::slug($data['title']);
+        
         dd($data);
 
         Post::create($data);
