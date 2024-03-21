@@ -26,4 +26,9 @@
 <label for="">Descripción</label>
 <textarea name="description">{{$post->description}}</textarea>
 
+@if (isset($task) && $task == 'edit')
+    <label for="">Imagen</label>
+    <input type="file" name="image">
+@endif
+
 <button type="submit">Enviar</button>

@@ -18,12 +18,7 @@ class PostController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //return route("post.create");
-        //return redirect("/post/create");
-        //return redirect()->route("post.create");
-        return to_route("post.create");
-        
+    {   
         $posts = Post::paginate(2);
 
         //dd($posts);
@@ -79,6 +74,11 @@ class PostController extends Controller
         //dd($data);
 
         Post::create($request->validated());
+
+        //return route("post.create");
+        //return redirect("/post/create");
+        //return redirect()->route("post.create");
+        return to_route("post.index")->with('status', "Registro creado.");
     }
 
     /**
@@ -89,7 +89,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        echo "show";
+        return view("dashboard\post.post.show", compact('post'));
     }
 
     /**
@@ -110,7 +110,22 @@ class PostController extends Controller
      */
     public function update(PutRequest $request, Post $post)
     {
-        $post->update($request->validated());
+        $data = $request->validated();
+        if(isset($data["image"])) {
+            //dd($request->image);
+            //dd($request->validated()["image"])->hashName();
+            //dd($request->validated()["image"])->getClientOriginalName();
+            //dd($request->validated()["image"]->extension());
+
+            $data["image"] = $filename = time().".".$data["image"]->extension();
+            //dd($filename);
+
+            $request->image->move(public_path("image/otro"),$filename);
+        }
+
+        $post->update($data);
+        //$request->session()->flash('status', "Registro actualizado.");
+        return to_route("post.index")->with('status', "Registro actualizado.");
        
     }
 
@@ -119,6 +134,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        echo "destroy";
+        $post->delete();
+        return to_route("post.index")->with('status', "Registro eliminado.");
     }
 }
