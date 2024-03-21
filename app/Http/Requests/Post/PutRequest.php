@@ -5,21 +5,12 @@ namespace App\Http\Requests\Post;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 
-class StoreRequest extends FormRequest
+class PutRequest extends FormRequest
 {
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            //'slug' => Str::slug($this->title),
-            //'slug' => Str::of($this->title)->slug()->append("-adicional"),
-            'slug' => str($this->slug)->slug()
-        ]);
-    }
-
    static public function myRules() {
     return [
             "title" => "required|min:5|max:500",
-            "slug" => "required|min:5|max:500|unique:posts",
+            //"slug" => "required|min:5|max:500|unique:posts",
             "content" => "required|min:7",
             "category_id" => "required|integer",
             "description" => "required|min:7",

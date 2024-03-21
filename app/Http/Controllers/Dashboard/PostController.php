@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Post;
 use App\Models\Category;
-use App\Http\Requests\Post\StoreRequest;
+use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\PutRequest;
+use App\Http\Requests\Post\StoreRequest;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -18,9 +19,14 @@ class PostController extends Controller
      */
     public function index()
     {
+        //return route("post.create");
+        //return redirect("/post/create");
+        //return redirect()->route("post.create");
+        return to_route("post.create");
+        
         $posts = Post::paginate(2);
 
-        dd($posts);
+        //dd($posts);
         return view('dashboard\post.post.index',compact('posts'));
     }
 
@@ -31,10 +37,12 @@ class PostController extends Controller
     {
        $categories = Category::pluck('id', 'title');
 
+       $post = new Post();
+
        //dd($categories);
 
        //dd($categories[0]->title);
-       echo view('dashboard\post.post.create',compact('categories'));
+       echo view('dashboard\post.post.create',compact('categories','post'));
     }
 
     /**
@@ -81,7 +89,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        echo "show";
     }
 
     /**
@@ -89,15 +97,21 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $categories = Category::pluck('id', 'title');
+
+        //dd($categories);
+ 
+        //dd($categories[0]->title);
+        echo view('dashboard\post.post.edit',compact('categories','post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(PutRequest $request, Post $post)
     {
-        //
+        $post->update($request->validated());
+       
     }
 
     /**
@@ -105,6 +119,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        echo "destroy";
     }
 }
