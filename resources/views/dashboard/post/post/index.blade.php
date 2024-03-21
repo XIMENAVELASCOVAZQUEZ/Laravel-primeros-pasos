@@ -27,7 +27,7 @@
                             {{ $p->title }}
                         </td>
                         <td>
-                            Categoria
+                            {{$p->category->title}}
                         </td>
                         <td>
                             {{ $p->posted }}
