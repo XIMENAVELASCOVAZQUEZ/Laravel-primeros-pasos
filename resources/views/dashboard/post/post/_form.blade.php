@@ -4,7 +4,7 @@
 <input type="text" name="title" value="{{$post->title}}">
 
 <label for="">Slug</label>
-<input readonly type="text" name="slug" value="{{$post->slug}}">
+<input type="text" name="slug" value="{{$post->slug}}">
 
 <label for="">Categoria</label>
 <select name="category_id">
