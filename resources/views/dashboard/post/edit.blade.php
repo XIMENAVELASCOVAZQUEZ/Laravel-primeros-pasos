@@ -1,14 +1,14 @@
-@extends('dashboard\post.layout')
+@extends('dashboard.layout')
 
 @section('content')
 <h1>Actualizar Post: {{$post->title}}</h1>
 
-@include('dashboard\post.fragment._errors-form')
+@include('dashboard.fragment._errors-form')
 
 <form action="{{ route('post.update', $post->id) }}" method="post" enctype="multipart/form-data">
 
     @method("PATCH")
-    @include('dashboard\post.post._form', ["task" => "edit"])
+    @include('dashboard.post._form', ["task" => "edit"])
 
 
 </form>

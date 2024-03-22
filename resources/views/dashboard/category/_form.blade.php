@@ -1,9 +1,9 @@
 @csrf
 
 <label for="">Titulo</label>
-<input type="text" name="title" value="{{$category->title}}">
+<input class="form-control" type="text" name="title" value="{{$category->title}}">
 
 <label for="">Slug</label>
-<input type="text" name="slug" value="{{$category->slug}}">
+<input class="form-control" type="text" name="slug" value="{{$category->slug}}">
 
-<button type="submit">Enviar</button>
+<button class="btn btn-success mt-3" type="submit">Enviar</button>
