@@ -2,8 +2,6 @@
 
 {{$header}}
 
-
-
     @foreach ($posts as $p)
 
         <div class="card card-white mb-2">

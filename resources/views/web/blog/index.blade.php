@@ -14,9 +14,7 @@
             </footer>
         @endslot
 
-        @slot('extra')
-            Extra
-        @endslot
+        @slot('extra', 'Extra')
 
     </x-web.blog.post.index>
 @endsection
