@@ -22,7 +22,7 @@ class PostController extends Controller
         $posts = Post::paginate(2);
 
         //dd($posts);
-        return view('dashboard\post.post.index',compact('posts'));
+        return view('dashboard\post.index',compact('posts'));
     }
 
     /**
@@ -37,7 +37,7 @@ class PostController extends Controller
        //dd($categories);
 
        //dd($categories[0]->title);
-       echo view('dashboard\post.post.create',compact('categories','post'));
+       echo view('dashboard\post.create',compact('categories','post'));
     }
 
     /**
@@ -89,7 +89,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view("dashboard\post.post.show", compact('post'));
+        return view("dashboard\post.show", compact('post'));
     }
 
     /**
@@ -102,7 +102,7 @@ class PostController extends Controller
         //dd($categories);
  
         //dd($categories[0]->title);
-        echo view('dashboard\post.post.edit',compact('categories','post'));
+        echo view('dashboard\post.edit',compact('categories','post'));
     }
 
     /**

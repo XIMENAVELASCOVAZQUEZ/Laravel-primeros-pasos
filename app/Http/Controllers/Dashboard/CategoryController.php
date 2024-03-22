@@ -19,7 +19,7 @@ class CategoryController extends Controller
         $categories = Category::paginate(2);
 
         //dd($categorys);
-        return view('dashboard\post.category.index',compact('categories'));
+        return view('dashboard.category.index',compact('categories'));
     }
 
     /**
@@ -32,7 +32,7 @@ class CategoryController extends Controller
        //dd($categories);
 
        //dd($categories[0]->title);
-       echo view('dashboard\post.category.create',compact('category'));
+       echo view('dashboard.category.create',compact('category'));
     }
 
     /**
@@ -56,7 +56,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view("dashboard\post.category.show", compact('category'));
+        return view("dashboard.category.show", compact('category'));
     }
 
     /**
@@ -64,7 +64,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        echo view('dashboard\post.category.edit',compact('category'));
+        echo view('dashboard.category.edit',compact('category'));
     }
 
     /**
