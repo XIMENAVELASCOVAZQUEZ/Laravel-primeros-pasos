@@ -16,8 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {   
+        //dd(Category::inRandomOrder()->first());
         $categories = Category::paginate(2);
-
         //dd($categorys);
         return view('dashboard.category.index',compact('categories'));
     }
